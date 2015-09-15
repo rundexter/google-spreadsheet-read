@@ -58,12 +58,18 @@ module.exports = _.merge({
     }
     , data: {
         local_test_step: {
-            /*
-             * You should update this section with some test input for testing your module
-             */
             input: {
-                //Replace VAR1 with the name of an expected input, and add more inputs as needed.
-                VAR1: 'foo'
+                //spreadsheet name will come from env
+                //spreadsheet: 'aaabbbbccc',
+                //worksheet will default to 0
+                //worksheet: 0
+                first_header: 5,
+                second_header: 'foo',
+                third_header: 'xxx',
+                fourth_header: 'bar',
+                //fifth_header will default to '4'
+                start_row: 1,
+                end_row: 2
             }
         }
     }

@@ -1,28 +1,65 @@
-/*
- * Metadata describing the module operation
- */
 {
-    //Required. Inputs the module expects.
     "inputs": [
-        //e.g.
-        /*
         {
-            "id": "from",
-            "title":"From",
+            "id": "spreadsheet",
+            "title":"Spreadsheet key",
+            "type":"string"
+        }, {
+            "id": "worksheet",
+            "title":"Worksheet index",
+            "type":"integer"
+        }, {
+            "id": "first_header",
+            "title":"1st column header",
+            "type":"string"
+        }, {
+            "id": "second_header",
+            "title":"2nd column header",
+            "type":"string"
+        }, {
+            "id": "third_header",
+            "title":"3rd column header",
+            "type":"string"
+        }, {
+            "id": "fourth_header",
+            "title":"4th column header",
+            "type":"string"
+        }, {
+            "id": "fifth_header",
+            "title":"5th column header",
+            "type":"string"
+        }, {
+            "id": "start_row",
+            "title":"Row to start at",
+            "type":"integer"
+        }, {
+            "id": "end_row",
+            "title":"Row to end at",
+            "type":"integer"
+        }
+    ],
+    "outputs": [
+        {
+            "id": "first",
+            "title":"1st column results",
+            "type":"string"
+        }, {
+            "id": "second",
+            "title":"2nd column results",
+            "type":"string"
+        }, {
+            "id": "third",
+            "title":"3rd column results",
+            "type":"string"
+        }, {
+            "id": "fourth",
+            "title":"4th column results",
+            "type":"string"
+        }, {
+            "id": "fifth",
+            "title":"5th column results",
             "type":"string"
         }
-        */
     ],
-    //Required. Outputs the module emits.
-    "outputs": [
-      //e.g.
-      /*
-        {
-            "id": "from",
-            "title":"From",
-            "type":"array"
-        }
-      */
-    ],
-    "title": "google-spreadsheet-read" /* Required.A display name for the module */
+    "title": "Google Spreadsheet Reader"
 }
