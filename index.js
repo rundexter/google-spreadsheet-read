@@ -27,8 +27,9 @@ module.exports = {
             , spreadsheet 
             , self = this
             ;
-        //console.log(worksheetId, firstColumn, secondColumn, thirdColumn, fourthColumn, fifthColumn, startRow, endRow);
+        //console.log(spreadsheetId, worksheetId, firstColumn, secondColumn, thirdColumn, fourthColumn, fifthColumn, startRow, endRow);
         //A few simple assertions
+        assert(spreadsheetId, 'Spreadsheet key requried (look for it in the spreadsheet\'s URL');
         assert(!isNaN(worksheetId) && worksheetId >= 0, 'Worksheet ID must be an integer, and will default to 0 if left out');
         assert(!isNaN(startRow) && startRow >= 0, 'Start row must be an integeter, and will default to 0 if left out');
         assert(!isNaN(endRow), 'End row must be an integer - negative values mean "to the very end"');
@@ -38,7 +39,7 @@ module.exports = {
         //Assemble the passed columns
         columns = { first: firstColumn, second: secondColumn, third: thirdColumn, fourth: fourthColumn, fifth: fifthColumn };
 
-        this.log({ message: 'Extracting data from worksheet :worksheetId', worksheetId: worksheetId });
+        this.log({ message: 'Extracting data from worksheet :worksheetId:', worksheetId: worksheetId });
 
         spreadsheet = new GoogleSpreadsheet(spreadsheetId);
         Q.ninvoke(spreadsheet, 'getInfo')
@@ -65,7 +66,7 @@ module.exports = {
                     if(idx < startRow) {
                         return;
                     }
-                    if(idx > endRow) {
+                    if(endRow > 0 && idx > endRow) {
                         return false;
                     }
                     _.each(columns, function(key, column) {
