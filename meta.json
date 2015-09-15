@@ -10,23 +10,23 @@
             "type":"integer"
         }, {
             "id": "first_header",
-            "title":"1st column header",
+            "title":"1st column",
             "type":"string"
         }, {
             "id": "second_header",
-            "title":"2nd column header",
+            "title":"2nd column",
             "type":"string"
         }, {
             "id": "third_header",
-            "title":"3rd column header",
+            "title":"3rd column",
             "type":"string"
         }, {
             "id": "fourth_header",
-            "title":"4th column header",
+            "title":"4th column",
             "type":"string"
         }, {
             "id": "fifth_header",
-            "title":"5th column header",
+            "title":"5th column",
             "type":"string"
         }, {
             "id": "start_row",

@@ -38,6 +38,8 @@ module.exports = {
         //Assemble the passed columns
         columns = { first: firstColumn, second: secondColumn, third: thirdColumn, fourth: fourthColumn, fifth: fifthColumn };
 
+        this.log({ message: 'Extracting data from worksheet :worksheetId', worksheetId: worksheetId });
+
         spreadsheet = new GoogleSpreadsheet(spreadsheetId);
         Q.ninvoke(spreadsheet, 'getInfo')
             .fail(function(err) {
