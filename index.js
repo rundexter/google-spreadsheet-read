@@ -1,8 +1,9 @@
 var _ = require('lodash')
     , Q = require('q')
     , assert = require('assert')
-    , GoogleSpreadsheet = require('google-spreadsheet')
+    , GoogleSpreadsheet = require('edit-google-spreadsheet')
     ;
+
 module.exports = {
     /**
      * The main entry point for the Dexter module
@@ -12,75 +13,89 @@ module.exports = {
      */
     run: function(step, dexter) {
         var spreadsheetId = step.input('spreadsheet').first()
-            , worksheetId = parseInt(step.input('worksheet').first() || 0, 10)
-            , firstColumn = step.input('first_header').first()
-            , secondColumn = step.input('second_header').first()
-            , thirdColumn = step.input('third_header').first()
-            , fourthColumn = step.input('fourth_header').first()
-            , fifthColumn = step.input('fifth_header').first()
-            , startRow = parseInt(step.input('start_row').first() || 0, 10)
+            , worksheetId = parseInt(step.input('worksheet').first() || 1, 10)
+            , col1 = step.input('col1_idx').first()
+            , col2 = step.input('col2_idx').first()
+            , col3 = step.input('col3_idx').first()
+            , col4 = step.input('col4_idx').first()
+            , col5 = step.input('col5_idx').first()
+            , startRow = parseInt(step.input('start_row').first() || 2, 10)
             , endRow = parseInt(step.input('end_row').first() || -1, 10)
-            , email = dexter.environment('google_app_client_email')
-            , privateKey = dexter.environment('google_app_client_private_key')
-            , data = []
+            , email = step.input('email', dexter.environment('google_app_client_email')).first()
+            , privateKey = step.input('private_key', dexter.environment('google_app_client_private_key')).first()
             , columns
-            , spreadsheet 
             , self = this
             ;
-        //console.log(spreadsheetId, worksheetId, firstColumn, secondColumn, thirdColumn, fourthColumn, fifthColumn, startRow, endRow);
+        //console.log(spreadsheetId, worksheetId, col1, col2, col3, col4, col5, startRow, endRow);
         //A few simple assertions
         assert(spreadsheetId, 'Spreadsheet key requried (look for it in the spreadsheet\'s URL');
         assert(!isNaN(worksheetId) && worksheetId >= 0, 'Worksheet ID must be an integer, and will default to 0 if left out');
         assert(!isNaN(startRow) && startRow >= 0, 'Start row must be an integeter, and will default to 0 if left out');
         assert(!isNaN(endRow), 'End row must be an integer - negative values mean "to the very end"');
-        //Make sure we have both email and privatekey or neither
-        assert(Boolean(email) === Boolean(privateKey));
+        assert(endRow < 0 || endRow >= startRow, 'End row must come after start row');
+        //Make sure we have both email and privatekey
+        assert(Boolean(email) && Boolean(privateKey), 'Email and private key are required, either as private settings or step inputs');
 
         //Assemble the passed columns
-        columns = { first: firstColumn, second: secondColumn, third: thirdColumn, fourth: fourthColumn, fifth: fifthColumn };
+        columns = { col1: col1, col2: col2, col3: col3, col4: col4, col5: col5 };
 
-        this.log({ message: 'Extracting data from worksheet :worksheetId:', worksheetId: worksheetId });
-
-        spreadsheet = new GoogleSpreadsheet(spreadsheetId);
-        Q.ninvoke(spreadsheet, 'getInfo')
+        options = {
+            //debug: true,
+            spreadsheetId: spreadsheetId,
+            worksheetId: worksheetId,
+            oauth: {
+                email: email,
+                key: privateKey
+            }
+        };
+        Q.ninvoke(GoogleSpreadsheet, 'load', options)
+            .then(function(spreadsheet) {
+                return Q.ninvoke(spreadsheet, 'receive');
+            })
+            .then(function(response) {
+                self.complete(self.parseRows(response[0], columns, startRow, endRow));
+            })
             .fail(function(err) {
-                if(!email) {
-                    return self.fail('Unable to access spreadsheet:' + err.message);
+                if(err.stack) {
+                    console.log(err.stack);
                 }
-                //Try again with credentials
-                return Q.ninvoke(spreadsheet, 'useServiceAccountAuth', {
-                    client_email: email,
-                    private_key: privateKey
-                })
-                    .then(function() {
-                        return Q.ninvoke(spreadsheet, 'getInfo');
-                    });
-            })
-            .then(function(info) {
-                var worksheet = info.worksheets[worksheetId];
-                return Q.ninvoke(worksheet, 'getRows');
-            })
-            .then(function(rows) {
-                _.each(rows, function(row, idx) {
-                    var o = {};
-                    if(idx < startRow) {
-                        return;
-                    }
-                    if(endRow > 0 && idx > endRow) {
-                        return false;
-                    }
-                    _.each(columns, function(key, column) {
-                        if(!key) {
-                            return;
-                        }
-                        o[column ] = row[key];
-                    });
-                    data.push(o);
-                });
-                self.complete(data);
-            })
-            .fail(function(err) {
                 self.fail(err);
+            })
+            ;
+    },
+    parseRows: function(rows, columns, start, end) {
+        //Get out quick if there aren't any rows
+        if(Object.keys(rows).length === 0) {
+            return [];
+        }
+        var colMap = _.clone(columns)
+            , headerMap = {}
+            , results = []
+            ;
+        _.each(rows[1], function(val, key) {
+            headerMap[val] = key; 
+        });
+        //If any of the columns are non-numeric, assume there's a header in the 1st row and look them up
+        _.each(colMap, function(userKey, outKey) {
+            if(_.isNaN(parseInt(userKey, 10))) {
+                colMap[outKey] = headerMap[userKey] || null;
+            }
+        });
+        //Assemble the data
+        _.each(rows, function(row, idx) {
+            var o = {};
+            idx = parseInt(idx, 10);
+            if(idx < start) {
+                return;
+            }
+            if(end > 0 && end < idx) {
+                return false;
+            }
+            _.each(colMap, function(userKey, outKey) {
+                o[outKey] = row[String(userKey)];
             });
+            results.push(o);
+        });
+        return results;
     }
 };

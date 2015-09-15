@@ -63,13 +63,13 @@ module.exports = _.merge({
                 //spreadsheet: 'aaabbbbccc',
                 //worksheet will default to 0
                 //worksheet: 0
-                first_header: 5,
-                second_header: 'foo',
-                third_header: 'xxx',
-                fourth_header: 'bar',
-                //fifth_header will default to '4'
-                start_row: 1,
-                end_row: 2
+                col1_idx: 5,
+                col2_idx: 'foo',
+                col3_idx: 'xxx',
+                col4_idx: 'bar',
+                //col5_dix will default to '4'
+                start_row: 2,
+                end_row: 3
             }
         }
     }

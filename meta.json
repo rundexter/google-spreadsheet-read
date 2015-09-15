@@ -3,31 +3,38 @@
         {
             "id": "spreadsheet",
             "title":"Spreadsheet key",
-            "type":"string"
+            "type":"string",
+            "selector_type": "user"
         }, {
             "id": "worksheet",
             "title":"Worksheet index",
-            "type":"integer"
+            "type":"integer",
+            "selector_type": "user"
         }, {
-            "id": "first_header",
+            "id": "col1_idx",
             "title":"1st column",
-            "type":"string"
+            "type":"string",
+            "selector_type": "user"
         }, {
-            "id": "second_header",
+            "id": "col2_idx",
             "title":"2nd column",
-            "type":"string"
+            "type":"string",
+            "selector_type": "user"
         }, {
-            "id": "third_header",
+            "id": "col3_idx",
             "title":"3rd column",
-            "type":"string"
+            "type":"string",
+            "selector_type": "user"
         }, {
-            "id": "fourth_header",
+            "id": "col4_idx",
             "title":"4th column",
-            "type":"string"
+            "type":"string",
+            "selector_type": "user"
         }, {
-            "id": "fifth_header",
+            "id": "col5_idx",
             "title":"5th column",
-            "type":"string"
+            "type":"string",
+            "selector_type": "user"
         }, {
             "id": "start_row",
             "title":"Row to start at",
@@ -36,27 +43,37 @@
             "id": "end_row",
             "title":"Row to end at",
             "type":"integer"
+        }, {
+            "id": "email",
+            "title": "OAuth email",
+            "type": "string",
+            "selector_type": "user"
+        }, {
+            "id": "private_key",
+            "title": "OAuth private key",
+            "type": "string",
+            "selector_type": "user"
         }
     ],
     "outputs": [
         {
-            "id": "first",
+            "id": "col1",
             "title":"1st column results",
             "type":"string"
         }, {
-            "id": "second",
+            "id": "col2",
             "title":"2nd column results",
             "type":"string"
         }, {
-            "id": "third",
+            "id": "col3",
             "title":"3rd column results",
             "type":"string"
         }, {
-            "id": "fourth",
+            "id": "col4",
             "title":"4th column results",
             "type":"string"
         }, {
-            "id": "fifth",
+            "id": "col5",
             "title":"5th column results",
             "type":"string"
         }
