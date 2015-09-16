@@ -1,16 +1,6 @@
 {
     "inputs": [
         {
-            "id": "spreadsheet",
-            "title":"Spreadsheet key",
-            "type":"string",
-            "selector_type": "user"
-        }, {
-            "id": "worksheet",
-            "title":"Worksheet index",
-            "type":"integer",
-            "selector_type": "user"
-        }, {
             "id": "col1_idx",
             "title":"1st column",
             "type":"string",
@@ -43,16 +33,6 @@
             "id": "end_row",
             "title":"Row to end at",
             "type":"integer"
-        }, {
-            "id": "email",
-            "title": "OAuth email",
-            "type": "string",
-            "selector_type": "user"
-        }, {
-            "id": "private_key",
-            "title": "OAuth private key",
-            "type": "string",
-            "selector_type": "user"
         }
     ],
     "outputs": [
@@ -76,6 +56,10 @@
             "id": "col5",
             "title":"5th column results",
             "type":"string"
+        }, {
+            "id": "idx",
+            "title": "Row index",
+            "type": "string"
         }
     ],
     "title": "Google Spreadsheet Reader"

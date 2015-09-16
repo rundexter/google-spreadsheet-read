@@ -11,12 +11,8 @@ library under the hood.
 
 Parameter|Required|Multiple?|Details
 ---------|--------|---------|-------
-spreadsheet | Yes | No | The ID of the spreadsheet you're reading
-worksheet | No | No | The index of the target worksheet (defaults to 1)
 start_row | No | No | Which row to start reading from (defaults to 2: assumes there's a header in 1)
 end_row | No | No | Which row to end at, or -1 to read everything below start_row (defaults to -1)
-email | No | No | Your Service Account's email.  If not set, it will try to use the matching environment variable as a default.
-private_key | No | No | Your Service account's entire private key (not the filename!).  If not set, it will try to use the matching environment variable as a default.
 col1_idx | No | No | Either the column index (1+) or the header name (EXACT, case included) of the data that should fill your col1 output
 col2_idx | No | No | Either the column index (1+) or the header name (EXACT, case included) of the data that should fill your col2 output
 col3_idx | No | No | Either the column index (1+) or the header name (EXACT, case included) of the data that should fill your col3 output
@@ -27,8 +23,9 @@ col5_idx | No | No | Either the column index (1+) or the header name (EXACT, cas
 
 Parameter|Required?|Details
 ---------|---------|-------
-google_app_client_email | No | Your Service Account's email - will be used if input.email is not present.
-google_app_client_private_key | No | Your Service Account's private key (the key itself, NOT the filename!) - will be used if input.private_key is not present.
+google_spreadsheet | Yes | The ID of the spreadsheet you're reading
+google_app_client_email | Yes | Your Service Account's email
+google_app_client_private_key | Yes | Your Service Account's private key (the key itself, NOT the filename!)
 
 ## Managing credentials
 

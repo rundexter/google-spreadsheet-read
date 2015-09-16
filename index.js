@@ -12,8 +12,8 @@ module.exports = {
      * @param {AppData} dexter Container for all data used in this workflow.
      */
     run: function(step, dexter) {
-        var spreadsheetId = step.input('spreadsheet').first()
-            , worksheetId = parseInt(step.input('worksheet').first() || 1, 10)
+        var spreadsheetId = dexter.environment('google_spreadsheet')
+            , worksheetId = 1 //parseInt(step.input('worksheet').first() || 1, 10)
             , col1 = step.input('col1_idx').first()
             , col2 = step.input('col2_idx').first()
             , col3 = step.input('col3_idx').first()
@@ -21,8 +21,8 @@ module.exports = {
             , col5 = step.input('col5_idx').first()
             , startRow = parseInt(step.input('start_row').first() || 2, 10)
             , endRow = parseInt(step.input('end_row').first() || -1, 10)
-            , email = step.input('email', dexter.environment('google_app_client_email')).first()
-            , privateKey = step.input('private_key', dexter.environment('google_app_client_private_key')).first()
+            , email = dexter.environment('google_app_client_email')
+            , privateKey = dexter.environment('google_app_client_private_key')
             , columns
             , self = this
             ;
@@ -72,6 +72,7 @@ module.exports = {
             , headerMap = {}
             , results = []
             ;
+        //Treat the first row like a header row...if it's not, and the app doesn't treat it like one, there's no harm done.
         _.each(rows[1], function(val, key) {
             headerMap[val] = key; 
         });
@@ -91,6 +92,7 @@ module.exports = {
             if(end > 0 && end < idx) {
                 return false;
             }
+            o.idx = idx;
             _.each(colMap, function(userKey, outKey) {
                 o[outKey] = row[String(userKey)];
             });
