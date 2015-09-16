@@ -7,12 +7,37 @@ library under the hood.
 
 # Configuring the Step
 
-## Getting the spreadsheet key
+## Input parameters
+
+Parameter|Required|Multiple?|Details
+---------|--------|---------|-------
+spreadsheet | Yes | No | The ID of the spreadsheet you're reading
+worksheet | No | No | The index of the target worksheet (defaults to 1)
+start_row | No | No | Which row to start reading from (defaults to 2: assumes there's a header in 1)
+end_row | No | No | Which row to end at, or -1 to read everything below start_row (defaults to -1)
+email | No | No | Your Service Account's email.  If not set, it will try to use the matching environment variable as a default.
+private_key | No | No | Your Service account's entire private key (not the filename!).  If not set, it will try to use the matching environment variable as a default.
+col1_idx | No | No | Either the column index (1+) or the header name (EXACT, case included) of the data that should fill your col1 output
+col2_idx | No | No | Either the column index (1+) or the header name (EXACT, case included) of the data that should fill your col2 output
+col3_idx | No | No | Either the column index (1+) or the header name (EXACT, case included) of the data that should fill your col3 output
+col4_idx | No | No | Either the column index (1+) or the header name (EXACT, case included) of the data that should fill your col4 output
+col5_idx | No | No | Either the column index (1+) or the header name (EXACT, case included) of the data that should fill your col5 output
+
+## Private Keys
+
+Parameter|Required?|Details
+---------|---------|-------
+google_app_client_email | No | Your Service Account's email - will be used if input.email is not present.
+google_app_client_private_key | No | Your Service Account's private key (the key itself, NOT the filename!) - will be used if input.private_key is not present.
+
+## Managing credentials
+
+### Getting the spreadsheet key
 
 Look in your spreadsheet's URL. Betweed the d/ and /edit is a bunch
 of random-looking characters.  This is your spreadsheet's key.
 
-## Creating credentials
+### Creating credentials
 
 To use this module, you must have a Google spreadsheet with oAuth
 credentials established.  To accomplish this, follow these steps:
@@ -30,7 +55,7 @@ credentials established.  To accomplish this, follow these steps:
 
 Once you've got your credentials, you can use them in your App in one of two ways
 
-## App-wide credentials
+### App-wide credentials
 
 If you want EVERYONE who uses the app to add to the same spreadsheet, 
 you can put the credentials in as private keys:
@@ -40,11 +65,17 @@ you can put the credentials in as private keys:
 
 Or as fixed entries in the email/private_key settings in the step itself.
 
-## User-specific credentials
+### User-specific credentials
 
 If you want each user to be to bring their own spreadsheet, leave the 
 spreadsheet, email, and private key fields as user-driven, and share
 the credential generating process above with them.
+
+### Misc.
+
+You CANNOT use your Google email and password to access these files.
+It used to be an option, but Google wisely removed it.  You should never
+add non-API credentials to Dexter!
 
 # Forking &amp; Testing
 If you'd like to customize this module, fork it in Github, clone your

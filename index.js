@@ -30,7 +30,7 @@ module.exports = {
         //A few simple assertions
         assert(spreadsheetId, 'Spreadsheet key requried (look for it in the spreadsheet\'s URL');
         assert(!isNaN(worksheetId) && worksheetId >= 0, 'Worksheet ID must be an integer, and will default to 0 if left out');
-        assert(!isNaN(startRow) && startRow >= 0, 'Start row must be an integeter, and will default to 0 if left out');
+        assert(!isNaN(startRow) && startRow >= 1, 'Start row must be an integeter, and will default to 2 if left out');
         assert(!isNaN(endRow), 'End row must be an integer - negative values mean "to the very end"');
         assert(endRow < 0 || endRow >= startRow, 'End row must come after start row');
         //Make sure we have both email and privatekey
