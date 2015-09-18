@@ -62,5 +62,6 @@
             "type": "string"
         }
     ],
+    "icon": "table",
     "title": "Google Spreadsheet Reader"
 }
