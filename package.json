@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
-  "author": "Someone Somewhere",
-  "license": "ISC",
+  "author": "Run Dexter, Inc.",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "edit-google-spreadsheet": "^0.2.19",
