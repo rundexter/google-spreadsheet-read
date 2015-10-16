@@ -50,23 +50,23 @@ credentials established.  To accomplish this, follow these steps:
   * (you can always create a new service account if you lose your credentials)
 1. Go back to your spreadsheet and share the doc with the email in the JSON file
 
-Once you've got your credentials, you can use them in your App in one of two ways
+### Using your credentials
 
-### App-wide credentials
+Now that you have your credentials file, you need to add it's data to the app.
 
-If you want EVERYONE who uses the app to add to the same spreadsheet, 
-you can put the credentials in as private keys:
+Parameter|How to use
+---------|-------
+google_app_client_email|The email provided in the JSON credentials you downloaded.  This can be entered as plain text in your private variable field.
+google_app_client_private_key|The ENTIRE private key in the JSON file, including "\n" escape characters.  You'll need to tell Dexter to *evaluate* the string rather than simply reading it - to do so, prefix your entry with an equals sign...for example, if your private key was AAA\nBBB, enter it as ="AAA\nBBB".
 
- google_app_client_email: <the email in the json file>
- google_app_client_private_key: <the ENTIRE private key in the JSON file, including line breaks>
+Example
 
-Or as fixed entries in the email/private_key settings in the step itself.
-
-### User-specific credentials
-
-If you want each user to be to bring their own spreadsheet, leave the 
-spreadsheet, email, and private key fields as user-driven, and share
-the credential generating process above with them.
+```
+google_app_client_email
+    hello@rundexter.com
+google_app_client_private_key
+    ="-----BEGIN PRIVATE KEY-----\nAAA\nBBB\n...\n-----END PRIVATE KEY-----\n"
+```
 
 ### Misc.
 
