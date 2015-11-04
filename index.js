@@ -50,7 +50,7 @@ module.exports = {
         };
         Q.ninvoke(GoogleSpreadsheet, 'load', options)
             .then(function(spreadsheet) {
-                return Q.ninvoke(spreadsheet, 'receive');
+                return Q.ninvoke(spreadsheet, 'receive', { getValues: true });
             })
             .then(function(response) {
                 self.complete(self.parseRows(response[0], columns, startRow, endRow));
