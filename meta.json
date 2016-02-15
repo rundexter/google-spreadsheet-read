@@ -1,38 +1,36 @@
 {
-    "inputs": [
-        {
+    "inputs": [{
+            "id": "email",
+            "title": "Email"
+        }, {
+            "id": "spreadsheet_id",
+            "title": "Spreadsheet ID"
+        }, {
             "id": "col1_idx",
             "title":"1st column",
-            "type":"string",
             "selector_type": "user"
         }, {
             "id": "col2_idx",
             "title":"2nd column",
-            "type":"string",
             "selector_type": "user"
         }, {
             "id": "col3_idx",
             "title":"3rd column",
-            "type":"string",
             "selector_type": "user"
         }, {
             "id": "col4_idx",
             "title":"4th column",
-            "type":"string",
             "selector_type": "user"
         }, {
             "id": "col5_idx",
             "title":"5th column",
-            "type":"string",
             "selector_type": "user"
         }, {
             "id": "start_row",
-            "title":"Row to start at",
-            "type":"integer"
+            "title":"Row to start at"
         }, {
             "id": "end_row",
-            "title":"Row to end at",
-            "type":"integer"
+            "title":"Row to end at"
         }
     ],
     "outputs": [
@@ -63,5 +61,11 @@
         }
     ],
     "icon": "table",
-    "title": "Google Spreadsheet Reader"
+    "title": "Google Spreadsheet Reader",
+    "providers": [{
+        "name": "google",
+        "scopes": [
+            "https://spreadsheets.google.com/feeds/"
+        ]
+    }]
 }

@@ -1,6 +1,6 @@
-var _ = require('lodash')
-    , env = require('./env')
-    ;
+var _   = require('lodash')
+  , env = require('./env')
+;
 
 module.exports = _.merge({
     /*
@@ -69,7 +69,9 @@ module.exports = _.merge({
                 col4_idx: 'bar',
                 //col5_dix will default to '4'
                 start_row: 2,
-                end_row: 3
+                end_row: 3,
+                email: 'daniel@rundexter.com',
+                spreadsheet_id: '117M1ade8ZbpigiKgve25SM7WCm5Q_taHuggQDSCfC18'
             }
         }
     }
