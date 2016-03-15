@@ -22,7 +22,6 @@ module.exports = {
           , startRow      = parseInt(step.input('start_row').first() || 2, 10)
           , endRow        = parseInt(step.input('end_row').first() || -1, 10)
           , email         = step.input('email').first()
-          //, privateKey    = dexter.environment('google_app_client_private_key')
           , self          = this
           , columns
           , options
@@ -47,7 +46,6 @@ module.exports = {
             worksheetId   : worksheetId,
             accessToken   : {
                 type      : 'Bearer',
-                email     : email,
                 token     : dexter.provider('google').credentials('access_token')
             }
         };

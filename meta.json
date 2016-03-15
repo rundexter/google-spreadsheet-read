@@ -1,65 +1,64 @@
 {
     "inputs": [{
-            "id": "email",
-            "title": "Email"
-        }, {
-            "id": "spreadsheet_id",
-            "title": "Spreadsheet ID"
-        }, {
-            "id": "col1_idx",
-            "title":"1st column",
-            "selector_type": "user"
-        }, {
-            "id": "col2_idx",
-            "title":"2nd column",
-            "selector_type": "user"
-        }, {
-            "id": "col3_idx",
-            "title":"3rd column",
-            "selector_type": "user"
-        }, {
-            "id": "col4_idx",
-            "title":"4th column",
-            "selector_type": "user"
-        }, {
-            "id": "col5_idx",
-            "title":"5th column",
-            "selector_type": "user"
-        }, {
-            "id": "start_row",
-            "title":"Row to start at"
-        }, {
-            "id": "end_row",
-            "title":"Row to end at"
-        }
-    ],
-    "outputs": [
-        {
-            "id": "col1",
-            "title":"1st column results",
-            "type":"string"
-        }, {
-            "id": "col2",
-            "title":"2nd column results",
-            "type":"string"
-        }, {
-            "id": "col3",
-            "title":"3rd column results",
-            "type":"string"
-        }, {
-            "id": "col4",
-            "title":"4th column results",
-            "type":"string"
-        }, {
-            "id": "col5",
-            "title":"5th column results",
-            "type":"string"
-        }, {
-            "id": "idx",
-            "title": "Row index",
-            "type": "string"
-        }
-    ],
+        "id": "spreadsheet_id",
+        "title": "Spreadsheet ID",
+        "description": "The ID of the spreadsheet (found in the URL)."
+    }, {
+        "id": "worksheet",
+        "title": "Worksheet #",
+        "description": "1-indexed number indicating which worksheet to use. Defaults to 1"
+    }, {
+        "id": "col1_idx",
+        "title":"1st column",
+        "selector_type": "user"
+    }, {
+        "id": "col2_idx",
+        "title":"2nd column",
+        "selector_type": "user"
+    }, {
+        "id": "col3_idx",
+        "title":"3rd column",
+        "selector_type": "user"
+    }, {
+        "id": "col4_idx",
+        "title":"4th column",
+        "selector_type": "user"
+    }, {
+        "id": "col5_idx",
+        "title":"5th column",
+        "selector_type": "user"
+    }, {
+        "id": "start_row",
+        "title":"Row to start at"
+    }, {
+        "id": "end_row",
+        "title":"Row to end at"
+    }],
+    "outputs": [{
+        "id": "col1",
+        "title":"1st column results",
+        "type":"string"
+    }, {
+        "id": "col2",
+        "title":"2nd column results",
+        "type":"string"
+    }, {
+        "id": "col3",
+        "title":"3rd column results",
+        "type":"string"
+    }, {
+        "id": "col4",
+        "title":"4th column results",
+        "type":"string"
+    }, {
+        "id": "col5",
+        "title":"5th column results",
+        "type":"string"
+    }, {
+        "id": "idx",
+        "title": "Row index",
+        "type": "string"
+    }],
     "icon": "table",
     "title": "Google Spreadsheet Reader",
     "providers": [{
