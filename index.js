@@ -13,12 +13,12 @@ module.exports = {
      */
     run: function(step, dexter) {
         var spreadsheetId = step.input('spreadsheet_id').first()
-          , worksheetId   = 1 //parseInt(step.input('worksheet').first() || 1, 10)
-          , col1          = step.input('col1_idx').first()
-          , col2          = step.input('col2_idx').first()
-          , col3          = step.input('col3_idx').first()
-          , col4          = step.input('col4_idx').first()
-          , col5          = step.input('col5_idx').first()
+          , worksheetId   = parseInt(step.input('worksheet').first() || 1, 10)
+          , col1          = parseInt(step.input('col1_idx').first() || 1, 10)
+          , col2          = parseInt(step.input('col2_idx').first() || 2, 10)
+          , col3          = parseInt(step.input('col3_idx').first() || 3, 10)
+          , col4          = parseInt(step.input('col4_idx').first() || 4, 10)
+          , col5          = parseInt(step.input('col5_idx').first() || 5, 10)
           , startRow      = parseInt(step.input('start_row').first() || 2, 10)
           , endRow        = parseInt(step.input('end_row').first() || -1, 10)
           , email         = step.input('email').first()
